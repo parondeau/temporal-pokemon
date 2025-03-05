@@ -148,7 +148,10 @@ export const PokemonCard = ({ id }: { id: string }) => {
                 <div>Base Happiness: {data.base_happiness}</div>
                 <div>Base Egg Steps: {data.base_egg_steps}</div>
                 <div>Experience Growth: {data.experience_growth}</div>
-                <div>Male Ratio: {data.percentage_male}%</div>
+                <div>
+                  Male Ratio: {data.percentage_male}
+                  {typeof data.percentage_male === 'number' ? '%' : ''}
+                </div>
                 <div>Legendary: {data.is_legendary === 1 ? 'Yes' : 'No'}</div>
               </div>
             </div>

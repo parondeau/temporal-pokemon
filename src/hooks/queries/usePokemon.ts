@@ -6,8 +6,16 @@ import { NotFoundError } from '../../errors/PokemonErrors';
 import { type State, useStore } from '../../useStore';
 import { buildApiUrl } from '../../utils/buildApiUrl';
 
+const measurement = z
+  .union([z.number(), z.string()])
+  .transform((val) => (val === '' ? 0 : Number(val)));
+
+const uniqueList = z
+  .array(z.string())
+  .transform((val) => Array.from(new Set(val)));
+
 const pokemonResponse = z.object({
-  abilities: z.array(z.string()),
+  abilities: uniqueList,
   against_bug: z.number(),
   against_dark: z.number(),
   against_dragon: z.number(),
@@ -34,18 +42,20 @@ const pokemonResponse = z.object({
   classfication: z.string(),
   defense: z.number(),
   experience_growth: z.number(),
-  height_m: z.number(),
+  height_m: measurement,
   hp: z.number(),
   japanese_name: z.string(),
   name: z.string(),
-  percentage_male: z.union([z.string(), z.number()]),
+  percentage_male: z
+    .union([z.string(), z.number()])
+    .transform((val) => (typeof val === 'string' ? 'N/A' : val)),
   pokedex_number: z.number(),
   sp_attack: z.number(),
   sp_defense: z.number(),
   speed: z.number(),
   type1: z.string(),
   type2: z.string().nullable(),
-  weight_kg: z.number(),
+  weight_kg: measurement,
   generation: z.number(),
   is_legendary: z.number(),
   id: z.number(),

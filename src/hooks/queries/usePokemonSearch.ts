@@ -23,7 +23,7 @@ export const usePokemonSearch = ({ searchTerm }: { searchTerm: string }) => {
   const { chaos, flakiness, delay } = useStore(useShallow(selector));
 
   const searchQuery = useInfiniteQuery({
-    queryKey: ['useSearch', { searchTerm, chaos, flakiness }],
+    queryKey: ['useSearch', { searchTerm, chaos, flakiness, delay }],
     queryFn: async ({ pageParam }) => {
       const url = buildApiUrl(`search/${searchTerm}`, {
         pageParam,

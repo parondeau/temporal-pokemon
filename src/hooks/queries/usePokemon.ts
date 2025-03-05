@@ -73,7 +73,6 @@ export const usePokemon = ({ id }: { id: string | undefined }) => {
       });
       const res = await fetch(url);
       const json = await res.json();
-      console.log(json);
       const parsedResponse = pokemonResponse.safeParse(json);
       if (parsedResponse.error) {
         if (json.error === 'Pokémon not found') {

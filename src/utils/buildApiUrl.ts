@@ -23,7 +23,7 @@ export const buildApiUrl = (
   }
   if (flakiness > 0) {
     // flakiness is a percentage, so we need to convert it to 1/N
-    const flakinessStr = (1 / (flakiness / 100)).toString();
+    const flakinessStr = (1 / (flakiness / 100)).toFixed(1);
     url.searchParams.append('flakiness', flakinessStr);
   }
   if (delay) {

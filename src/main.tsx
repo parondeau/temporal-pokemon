@@ -31,6 +31,7 @@ createRoot(document.getElementById('root')!).render(
           >
             <Route index element={<Search />} />
             <Route path={routes.pokemon} element={<Pokemon />} />
+            <Route path="*" element={<div>Not Found</div>} />
           </Route>
         </Routes>
       </BrowserRouter>

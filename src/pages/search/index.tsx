@@ -2,6 +2,7 @@ import { useShallow } from 'zustand/shallow';
 
 import { PokemonSearchResults } from './PokemonSearchResults/PokemonSearchResults';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
+import { Field } from '../../components/catalyst/fieldset';
 import { Input } from '../../components/catalyst/input';
 import { usePokemonSearch } from '../../hooks/queries/usePokemonSearch';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -22,11 +23,15 @@ export const Search = () => {
 
   return (
     <div className="flex flex-col items-start justify-start gap-4">
-      <Input
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for a Pokemon..."
-      />
+      <Field className="w-full">
+        <Input
+          aria-label="Search for a Pokemon"
+          name="search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for a Pokemon..."
+        />
+      </Field>
       <PokemonSearchResults {...searchQuery} />
       {searchQuery.isFetching && (
         <div className="absolute right-2 bottom-2">
